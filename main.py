@@ -1,4 +1,3 @@
-import json
 import streamlit as st
 from weaviatedb import WeaviateClient
 from pdflib import extract_data, load_files
@@ -16,10 +15,6 @@ def create_weaviate_client(url: str = None):
     :return: The created WeaviateClient instance
     """
     return WeaviateClient(overrule_weaviate_url=url)
-
-
-# load_files(folder_path=folder_path)
-
 
 
 def query_cv(query_text:str, client:WeaviateClient):
@@ -58,23 +53,12 @@ if __name__ == '__main__':
     
     the_query = st.text_input('Ask a question about our profiles')
 
-    # if data_loaded:
-        # query_text = "There is a new role that requires Azure Data Factory knowledge, who is a good candidate for this? Explain why."
-        # cv_processed = query_cv(query_text=query_text, client=weaviate_client)
-        # print(cv_processed)
-    
-    
     if the_query:
         response = query_cv(query_text=the_query, client=weaviate_client)
 
-        # parsed_data = json.loads(response)
-
-        # Extract 'result' and 'source'     
         result = response['data']['Get']['Resume'][0]['_additional']['answer']['result']
-        source = response['data']['Get']['Resume'][0]['source']
-        
+        source = response['data']['Get']['Resume'][0]['source']        
 
         st.text_area(label="Answer", value=f'''{result} (source: {source}.pdf)''')
-        print(cv_processed)
         st.text_area(label="complete", value=response)
         

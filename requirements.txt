@@ -1,0 +1,6 @@
+jq==1.6.0
+pandas==2.2.0
+pypdf==4.0.2
+python-dotenv==1.0.1
+streamlit==1.31.1
+weaviate_client==4.4.4
