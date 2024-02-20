@@ -1,0 +1,4 @@
+.env
+venv
+infra/data_clip/*
+data_source
