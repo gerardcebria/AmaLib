@@ -19,7 +19,7 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: "text2vec-openai"
       ENABLE_MODULES: "text2vec-openai,qna-openai"
-      OPENAI_APIKEY: "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"  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at query time.
+      OPENAI_APIKEY: ""  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at query time.
       CLUSTER_HOSTNAME: "node1"
     volumes:
       - weaviate-data:/data
