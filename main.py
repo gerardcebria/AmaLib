@@ -5,7 +5,6 @@ from pdflib import extract_data, load_files
 folder_path = "./data_source"
 
 
-pdf_text = extract_data(folder_path)
 
 @st.cache_resource
 def create_weaviate_client(url: str = None):
@@ -40,7 +39,7 @@ def query_cv(query_text:str, client:WeaviateClient):
     return response
 
 if __name__ == '__main__':
-    weaviate_client = create_weaviate_client(url="http://localhost:8080")
+    weaviate_client = create_weaviate_client(url='http://192.168.192.2:8080')
     cv_processed = ''
     
     st.title("Search for CVs")

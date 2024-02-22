@@ -11,7 +11,7 @@ You will need an OpenAI key to configure the Weaviate Server.
 
 To run the Weaviate server use the command: 
 
-`docker compose -f infra/docker-compose-weaviate-openai.yml up -d`
+`docker compose -f docker-compose-weaviate-openai.yml up -d`
 
 
 ## App - Streamlit

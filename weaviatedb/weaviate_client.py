@@ -30,7 +30,7 @@ class WeaviateClient:
         if weaviate_url is None:
             self.logger.error("Cannot create a Weaviate instance with an empty URL")
 
-        if not weaviate_url.startswith("http://localhost"):
+        if not weaviate_url.startswith("http://192.168.192.2"):
             self.client = weaviate.Client(
                 url=weaviate_url,
                 auth_client_secret=auth_config,
