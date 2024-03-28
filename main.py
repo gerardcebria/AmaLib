@@ -1,6 +1,7 @@
 import streamlit as st
 from weaviatedb import WeaviateClient
 from pdflib import extract_data, load_files
+import socket
 
 folder_path = "./data_source"
 
@@ -39,7 +40,16 @@ def query_cv(query_text:str, client:WeaviateClient):
     return response
 
 if __name__ == '__main__':
-    weaviate_client = create_weaviate_client(url='http://192.168.192.2:8080')
+    try:
+        weaviate_ip = socket.gethostbyname('weaviate')
+    except socket.gaierror:
+        weaviate_ip = 'localhost'
+
+    # Comprueba si weaviate_ip está vacío o no
+    if not weaviate_ip:
+        weaviate_ip = 'localhost'
+
+    weaviate_client = create_weaviate_client(url=f'''http://{weaviate_ip}:8080''')
     cv_processed = ''
     
     st.title("Search for CVs")

@@ -25,24 +25,24 @@ class WeaviateClient:
             weaviate_url = os.getenv('WEAVIATE_URL')
 
         self.logger = logging.getLogger("weaviate")
+        self.logger.info(overrule_weaviate_url)
         self.logger.info("Creating a new WeaviateClient")
 
         if weaviate_url is None:
             self.logger.error("Cannot create a Weaviate instance with an empty URL")
 
-        if not weaviate_url.startswith("http://192.168.192.2"):
-            self.client = weaviate.Client(
-                url=weaviate_url,
-                auth_client_secret=auth_config,
-                additional_headers={
-                    "X-OpenAI-Api-Key": os.getenv('OPEN_AI_API_KEY')
-                }
-            )
-        else:
-            self.client = weaviate.Client(
-                url=weaviate_url,
-            )
-
+        # if not weaviate_url.startswith(f'''http://{overrule_weaviate_url}'''):
+        #     self.client = weaviate.Client(
+        #         url=weaviate_url,
+        #         auth_client_secret=auth_config,
+        #         additional_headers={
+        #             "X-OpenAI-Api-Key": os.getenv('OPEN_AI_API_KEY')
+        #         }
+        #     )
+        # else:
+        self.client = weaviate.Client(
+            url=weaviate_url,
+        )
         self.logger.info(f"Weaviate client is connected: {self.client.is_ready()}")
 
     def __del__(self):
